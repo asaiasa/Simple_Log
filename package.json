@@ -4,27 +4,24 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "ts-node src/main.ts",
-    "watch": "ts-node-dev --respawn src/main.ts",
     "clean": "rimraf dist/*",
-    "tsc": "tsc",
-    "build": "npm-run-all clean tsc",
-    "start": "node ."
+    "build": "tsc",
+    "start": "npm run build && electron ./dist/main.js ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asaiasa/Simple_Log.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "asaiasa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/asaiasa/Simple_Log/issues"
   },
   "homepage": "https://github.com/asaiasa/Simple_Log#readme",
   "devDependencies": {
-    "@types/node": "^13.9.2",
-    "ts-node": "^8.7.0",
-    "typescript": "^3.8.3"
+    "electron": "^8.1.1",
+    "electron-prebuilt": "^1.4.13",
+    "ts-node": "^8.7.0"
   }
 }
