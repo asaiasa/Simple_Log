@@ -1,0 +1,30 @@
+{
+  "name": "Simple_Log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "ts-node src/main.ts",
+    "watch": "ts-node-dev --respawn src/main.ts",
+    "clean": "rimraf dist/*",
+    "tsc": "tsc",
+    "build": "npm-run-all clean tsc",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asaiasa/Simple_Log.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asaiasa/Simple_Log/issues"
+  },
+  "homepage": "https://github.com/asaiasa/Simple_Log#readme",
+  "devDependencies": {
+    "@types/node": "^13.9.2",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3"
+  }
+}
