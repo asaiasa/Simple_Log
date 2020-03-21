@@ -1,5 +1,5 @@
 {
-  "name": "Simple_Log",
+  "name": "Simple_MINUTE",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asaiasa/Simple_Log.git"
+    "url": "git+https://github.com/asaiasa/Simple_MINUTE.git"
   },
   "keywords": [],
   "author": "asaiasa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/asaiasa/Simple_Log/issues"
+    "url": "https://github.com/asaiasa/Simple_MINUTE/issues"
   },
-  "homepage": "https://github.com/asaiasa/Simple_Log#readme",
+  "homepage": "https://github.com/asaiasa/Simple_MINUTE#readme",
   "devDependencies": {
     "electron": "^8.1.1",
     "electron-prebuilt": "^1.4.13",
