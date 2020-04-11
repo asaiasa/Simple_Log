@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Simple MINUTES</title>
+
+  <!-- CSS -->
+  <link href="../css/iconfont/material-icons.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row left">
+      <h1>View</h1>
+      <a id="search-button" class="btn-large waves-effect waves-light blue darken-2">search</a>
+
+      <br><br><br>
+
+      <table id="minutes_table">
+        <thread>
+          <tr>
+            <th>Date</th>
+            <th>Agenda</th>
+            <th>View</th>
+          </tr>
+        </thread>
+      </table>
+
+      <br><br><br>
+
+      <a href="index.html" class="btn-large waves-effect waves-light blue darken-2">back</a>
+    </div>
+  </div>
+
+  <!-- view window (modal) -->
+  <dialog id='view-modal'>
+    <div class="container">
+
+      <div class="row left">
+
+        <!-- date -->
+        <label>date: </label>
+        <label id="date" for="date"></label>
+        <br>
+
+        <!-- member -->
+        <label>members: </label>
+        <label id="members" for="members"></label>
+        <br>
+
+        <!-- agenda -->
+        <label>agenda list: </label>
+        <label id="agenda" for="agenda list"></label>
+
+        <!-- content -->
+        <label>contents: </label>
+        <label id="contents" for="contents"></label>
+
+        <!-- conclusion -->
+        <label>conclusion: </label>
+        <label id="conclusion" for="conclusion"></label>
+
+        <!-- reason -->
+        <label>reason: </label>
+        <label id="reason" for="reason"></label>
+
+        <!-- memo -->
+        <label>memo: </label>
+        <label id="memo" for="memo"></label>
+
+        <!-- status -->
+        <label>status: </label>
+        <label id="status" for="status"></label>
+
+      </div>
+
+      <br><br><br>
+
+      <div class="row right">
+        <a id='close-button' class="btn-small waves-effect waves-light blue darken-2">close</a>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- search window (modal) -->
+  <dialog id='search-modal'>
+    <div class="container">
+      <div class="row left">
+        <div class="input-field col s12">
+          <textarea id="condition" class="materialize-textarea"></textarea>
+          <p>Enter key words, for exsample: "XXX" YYY ZZZ</p>
+          <p>The result must contain the keyword "XXX" and either YYY or ZZZ.</p>
+          <label for="key words">key words</label>
+        </div>
+        <form action='#'>
+          <p>
+            <label>
+              <input type="checkbox" id="checkbox_all" />
+              <span>Date specification</span>
+            </label>
+          </p>
+        </form>
+        <div class="input-field col s12" id="calendar">
+          <div>
+            <label>start date</label>
+            <input id="start" type="text" class="datepicker">
+          </div>
+          <div>
+            <label>end date</label>
+            <input id="end" type="text" class="datepicker">
+          </div>
+          <!-- materialize script -->
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              M.Datepicker.init(document.querySelectorAll('.datepicker'));
+            });
+          </script>
+        </div>
+        <a id='cancel-button' class="btn-small waves-effect waves-light blue darken-2">cancel</a>
+        <a id='ok-button' class="btn-small waves-effect waves-light blue darken-2">ok</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- hidden tag -->
+  <div hidden id="hidden_tag"></div>
+
+  <!--  Scripts-->
+  <script src="../js/materialize.min.js"></script>
+  <script>require("../../dist/view.js")</script>
+
+</body>
+
+</html>

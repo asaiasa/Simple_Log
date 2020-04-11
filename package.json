@@ -1,5 +1,5 @@
 {
-  "name": "Simple_MINUTE",
+  "name": "Simple_MINUTES",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,18 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asaiasa/Simple_MINUTE.git"
+    "url": "git+https://github.com/asaiasa/Simple_MINUTES.git"
   },
   "keywords": [],
   "author": "asaiasa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/asaiasa/Simple_MINUTE/issues"
+    "url": "https://github.com/asaiasa/Simple_MINUTES/issues"
   },
-  "homepage": "https://github.com/asaiasa/Simple_MINUTE#readme",
+  "homepage": "https://github.com/asaiasa/Simple_MINUTES#readme",
   "devDependencies": {
     "electron": "^8.1.1",
     "electron-prebuilt": "^1.4.13",
-    "ts-node": "^8.7.0"
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.7.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.6",
+    "electron-store": "^5.1.1",
+    "jquery": "^3.4.1"
   }
 }

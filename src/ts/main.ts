@@ -1,7 +1,13 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
+import DM from './dataManager';
 
-let mainWindow: Electron.BrowserWindow | null = null;
+/**************************************************************************************/
+import * as mydebug from './debug';
+const DEBUG: boolean = true;    // all store data is deleted when application is closed.
+/**************************************************************************************/
+
+var mainWindow: Electron.BrowserWindow | null = null;
 
 // correspond to default value deprecated 
 app.allowRendererProcessReuse = true;
@@ -19,14 +25,20 @@ function createWindow() {
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, "../src/html/index.html"));
 
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
+    if (DEBUG) {
+        // Open the DevTools.
+        mainWindow.webContents.openDevTools();
+        mainWindow.maximize();
+        // mydebug.mydebug.Store_Sample_Minutes_Data();
+        mydebug.mydebug.Store_Sample_Agenda_Data();
+    }
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
+        postProcess();
         mainWindow = null;
     });
 }
@@ -40,8 +52,12 @@ app.on("ready", createWindow);
 app.on("window-all-closed", () => {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== "darwin") {
-        app.quit();
+    try {
+        if (process.platform !== "darwin") {
+            app.quit();
+        }
+    } catch (e) {
+        // alert(e);
     }
 });
 
@@ -55,3 +71,12 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+function postProcess() {
+    const dm: DM = new DM();
+    if (DEBUG) {
+        dm.console_all();
+        dm.del_all();
+    }
+    dm.del_New();
+    dm.del_search();
+}

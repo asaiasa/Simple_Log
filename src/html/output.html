@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Simple MINUTES</title>
+
+  <!-- CSS -->
+  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row left">
+      <h1>Output</h1>
+      <form action='#'>
+        <p>
+          <label>
+            <input type="checkbox" checked="checked" id="checkbox_all" />
+            <span>All data</span>
+          </label>
+        </p>
+      </form>
+      <div class="input-field col s12" id="condition">
+        <textarea class="materialize-textarea"></textarea>
+        <p>Enter key words, for exsample: "XXX" YYY ZZZ</p>
+        <p>The result must contain the keyword "XXX" and either YYY or ZZZ.</p>
+        <label for="key words">key words</label>
+      </div>
+      <div class="input-field col s12" id="calendar">
+        <div>
+          <label>Output start date</label>
+          <input id="start" type="text" class="datepicker">
+        </div>
+        <div>
+          <label>Output end date</label>
+          <input id="end" type="text" class="datepicker">
+        </div>
+        <!-- materialize script -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            M.Datepicker.init(document.querySelectorAll('.datepicker'));
+          });
+        </script>
+      </div>
+
+      <br><br><br>
+      <a id="output-button" class="btn-large waves-effect waves-light blue darken-2">csv output</a>
+      <br><br><br>
+      <a href="index.html" id="back-button" class="btn-large waves-effect waves-light blue darken-2">back</a>
+    </div>
+
+  </div>
+
+  <!--  Scripts-->
+  <script src="../js/materialize.min.js"></script>
+  <script>require("../../dist/output.js")</script>
+
+</body>
+
+</html>

@@ -12,3 +12,7 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+dialog{
+  width: 400px;
+  height: 600px;
+}
