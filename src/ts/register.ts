@@ -18,6 +18,8 @@ window.onload = (): void => {
 
 window.onunload = (): void => {
     dm.del_New();
+    dm.set_Agenda(agenda_list);
+    dm.set_Minutes(minutes);
 }
 
 /**
@@ -172,7 +174,7 @@ const get_entered_data = (registered: boolean): boolean => {
         let memo: string = CF.getText(register_id['memo_input']);
         let comp: boolean | null = statusChanger(CF.getSelecterboxValue(register_id['status_selecter']));
 
-        if (agenda == '') agenda = select;
+        if (chkbox) agenda = select;
         push_data(registered, agenda, content, conclusion, reason, memo, comp);
 
         return true;
