@@ -3,8 +3,10 @@ import * as path from "path";
 import DM from './dataManager';
 
 /**************************************************************************************/
-import * as mydebug from './debug';
+import { mydebug as mydebug } from './debug';
 const DEBUG: boolean = true;    // all store data is deleted when application is closed.
+const TEST_MINUTES: boolean = false;
+const TEST_AGENDA: boolean = true;
 /**************************************************************************************/
 
 var mainWindow: Electron.BrowserWindow | null = null;
@@ -29,8 +31,8 @@ function createWindow() {
         // Open the DevTools.
         mainWindow.webContents.openDevTools();
         mainWindow.maximize();
-        // mydebug.mydebug.Store_Sample_Minutes_Data();
-        mydebug.mydebug.Store_Sample_Agenda_Data();
+        if (TEST_MINUTES) mydebug.Store_Sample_Minutes_Data();
+        if (TEST_AGENDA) mydebug.Store_Sample_Agenda_Data();
     }
 
     // Emitted when the window is closed.
@@ -78,5 +80,7 @@ function postProcess() {
         dm.del_all();
     }
     dm.del_New();
+    dm.del_Temp();
+    dm.del_free();
     dm.del_search();
 }

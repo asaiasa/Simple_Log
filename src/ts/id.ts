@@ -6,6 +6,7 @@ export const output_id: { [s: string]: string } = {
 }
 
 export const minutes_id: { [s: string]: string } = {
+    'back_btn': 'back-button',
     'next-btn': 'next-button',
     'member_id': 'members'
 }
@@ -63,7 +64,7 @@ export const register_id: { [s: string]: string } = {
     'reason_input': 'reason',
     'memo_input': 'memo',
     'status_selecter': 'status_selecter',
-    'status_true': 'completed',
-    'status_false': 'unresolved',
-    'status_null': 'none'
+    'status_true': 'true',
+    'status_false': 'false',
+    'status_null': 'null'
 }

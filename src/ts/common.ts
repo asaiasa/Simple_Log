@@ -5,12 +5,8 @@ export namespace commonFunction {
      * ex button
      */
     export const addEvent = (id: string, function_name: { (): void }, action?: string): void => {
-        let btn: HTMLElement | null = document.getElementById(id);
-        let act: string = 'click';
-        if (action != undefined)
-            act = action;
-        if (btn != null) btn.addEventListener(act, (): void => { function_name(); });
-        else console.log('add event error: id = ' + id + '\nfunction:\n' + function_name.toString());
+        const act: string = action === undefined ? 'click' : action;
+        document.getElementById(id)?.addEventListener(act, (): void => { function_name(); });
     }
 
     /**
@@ -18,12 +14,8 @@ export namespace commonFunction {
      * ex: checkbox
      */
     export const addEvent_i = (id: string, function_name: { (): void }, action?: string): void => {
-        let btn: HTMLInputElement = document.getElementById(id) as HTMLInputElement;
-        let act: string = 'click';
-        if (action != undefined)
-            act = action;
-        if (btn != null) btn.addEventListener(act, (): void => { function_name(); });
-        else console.log('add event error.');
+        const act: string = action === undefined ? 'click' : action;
+        (document.getElementById(id) as HTMLInputElement)?.addEventListener(act, (): void => { function_name(); });
     }
 
     /**
@@ -50,14 +42,7 @@ export namespace commonFunction {
      * get selecterbox value/index
      */
     export const getSelecterboxValue = (id: string): string => { return (document.getElementById(id) as HTMLSelectElement).value; }
-    export const getSelecterboxIndex = (id: string): number => { return (document.getElementById(id) as HTMLSelectElement).selectedIndex; }
-    export const deleteSelecterboxOption = (id: string, index: number): void => { (document.getElementById(id) as HTMLSelectElement).remove(index); }
     export const addSelecterboxOption = (id: string, value: string) => { (document.getElementById(id) as HTMLSelectElement).add(new Option(value)); }
-
-    /**
-     * set selecterbox index
-     */
-    export const setSelecterboxIndex = (id: string, index: number): void => { (document.getElementById(id) as HTMLSelectElement).selectedIndex = index; }
 
     /**
      * get date from calendar
@@ -68,7 +53,6 @@ export namespace commonFunction {
     export const getCalendarDate = (connect_char: string = '/', month: string = 'en'): string => {
         var dp_year: Element = document.getElementsByClassName('year-text')[0] as Element;
         var dp_date: Element = document.getElementsByClassName('date-text')[0] as Element;
-
         var date: string[] = [];
 
         // year
@@ -76,8 +60,7 @@ export namespace commonFunction {
 
         // month
         var temp: string = dp_date.innerHTML.slice(5, 8);
-        if (month == 'num') date.push(trans_Month(temp));
-        else date.push(temp);
+        date.push(month == 'num' ? trans_Month(temp) : temp);
 
         // day
         date.push(dp_date.innerHTML.slice(9, 11));
@@ -106,11 +89,10 @@ export namespace commonFunction {
 
         // month
         var temp: string = dp_date[0].innerHTML.slice(5, 8);
-        if (month == 'num') start_date.push(trans_Month(temp));
-        else start_date.push(temp);
+        start_date.push(month == 'num' ? trans_Month(temp) : temp);
+
         temp = dp_date[1].innerHTML.slice(5, 8);
-        if (month == 'num') end_date.push(trans_Month(temp));
-        else end_date.push(temp);
+        end_date.push(month == 'num' ? trans_Month(temp) : temp);
 
         // day
         start_date.push(dp_date[0].innerHTML.slice(9, 11));

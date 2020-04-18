@@ -18,6 +18,7 @@
 
       <!-- back button -->
       <a id="back-button" class="btn-large waves-effect waves-light blue darken-2">back</a>
+      <br><label>option: status will be reset.</label>
 
       <br><br><br>
 
@@ -29,7 +30,7 @@
         </label>
       </form>
 
-      <!-- title selecter -->
+      <!-- agenda selecter -->
       <div class="input-field col s12" id="agenda_selecter_div">
         <select id="agenda_selecter">
           <option value="" disabled selected>Choose agenda</option>
@@ -43,8 +44,8 @@
 
       <!-- agenda column -->
       <div class="row">
-        <div class="input-field col s12" id="agenda">
-          <textarea class="materialize-textarea"></textarea>
+        <div class="input-field col s12">
+          <textarea id="agenda" class="materialize-textarea"></textarea>
           <label for="agenda">agenda</label>
         </div>
       </div>
@@ -91,7 +92,7 @@
       <!-- comp selecter -->
       <div class="input-field col s12">
         <select id="status_selecter">
-          <option value="none">none</option>
+          <option value="null">none</option>
           <option value="true">completed</option>
           <option value="false">unresolved</option>
         </select>

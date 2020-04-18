@@ -14,12 +14,10 @@ window.onload = (): void => {
 }
 
 window.onunload = (): void => {
-    var hidden_tag: HTMLElement | null = document.getElementById(view_id['hidden_id']);
-    if (hidden_tag != null) {
-        if (hidden_tag.innerText != '') {
-            dm.set_searched(hidden_tag.innerText);
-            hidden_tag.innerText = '';
-        }
+    var hidden_tag_text: string | undefined = document.getElementById(view_id['hidden_id'])?.innerText;
+    if (hidden_tag_text != '' && hidden_tag_text !== undefined) {
+        dm.set_searched(hidden_tag_text);
+        hidden_tag_text = '';
     }
 }
 
@@ -90,23 +88,16 @@ const add_view_btn = (id: string): HTMLElement => {
  * @param row_index - given automatically
  */
 const add_view_btn_event = (id: string, row_index: number): void => {
-    let view_btn: HTMLElement | null = document.getElementById(id);
-    if (view_btn != null) view_btn.addEventListener('click', (): void => { view_Minutes(row_index); });
+    document.getElementById(id)?.addEventListener('click', (): void => { view_Minutes(row_index); });
 }
 
 /**
  * show modal window
  * @param row_index - given automatically
  */
-const view_Minutes = (row_index: number): void => {
-    const vd: VIEW_DIALOG = new VIEW_DIALOG();
-    vd.rendererView(minutes[row_index]);
-}
+const view_Minutes = (row_index: number): void => { (new VIEW_DIALOG()).rendererView(minutes[row_index]); }
 
 /**
  * show modal winwow
  */
-const search_minutes_condition = (): void => {
-    const sd: SEARCH_DIALOG = new SEARCH_DIALOG(view_id['hidden_id']);
-    sd.dialogOpen();
-}
+const search_minutes_condition = (): void => { (new SEARCH_DIALOG(view_id['hidden_id'])).dialogOpen(); }

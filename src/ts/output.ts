@@ -51,8 +51,6 @@ const get_data = (): MINUTES[] | null => {
     }
 
     var searched_index: number[] = SCF.search_Minutes(minutes, [search_text, date_range[0], date_range[1]]);
-    if (searched_index.length == 0) return [];
-
     var searched_mintues: MINUTES[] = [];
     searched_index.forEach(index => searched_mintues.push(minutes[index]));
 
@@ -67,17 +65,12 @@ const csv_export = (): void => {
 
     var data: MINUTES[] | null = get_data();
 
-    if (data == null) {
-        return; // no search condition. alert has already displayed.
-    }
-    else if (data.length == 0) {
-        // alert('No data are found.');
-        return;
-    }
+    if (data == null || data.length == 0) return;
 
     const csvContent: string = convert_DATA(data).map(e => e.join(';')).join('\n');
     const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
     const blob: Blob = new Blob([bom, csvContent], { type: 'text/csv;charset=utf-8;' });
+
     if (navigator.msSaveBlob) { // IE 10+
         navigator.msSaveBlob(blob, 'minutes.csv');
     } else {
@@ -141,8 +134,5 @@ const convert_DATA = (data: MINUTES[]): string[][] => {
  * @param bool 
  */
 const get_status = (bool: boolean | null): string => {
-    if (bool == null) return 'none';
-    else if (bool) return 'completed';
-    else if (!bool) return 'incompleted';
-    else return 'none';
+    return bool == null ? 'none' : (bool ? 'completed' : 'incompleted');
 }

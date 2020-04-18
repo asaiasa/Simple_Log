@@ -26,42 +26,15 @@ export class MINUTES {
     constructor(member: string[], date: { [s: string]: string }, id: string)
     constructor(member: string[], date: { [s: string]: string }, id: string, agenda: string[], content: string[], conclusion: string[], reason: string[], memo: string[], completed: (boolean | null)[])
     constructor(member: string[], date?: { [s: string]: string }, id?: string, agenda?: string[], content?: string[], conclusion?: string[], reason?: string[], memo?: string[], completed?: (boolean | null)[]) {
-
-        // title
-        if (date === undefined) this.date = this.getToday();
-        else this.date = date;
-
-        // members
-        this.member = member;
-
-        // agenda
-        if (agenda === undefined) this.agenda = [];
-        else this.agenda = agenda;
-
-        // content
-        if (content === undefined) this.content = [];
-        else this.content = content
-
-        // conclusion
-        if (conclusion === undefined) this.conclusion = [];
-        else this.conclusion = conclusion;
-
-        // reason
-        if (reason === undefined) this.reason = []
-        else this.reason = reason;
-
-        // memo
-        if (memo === undefined) this.memo = [];
-        else this.memo = memo;
-
-        // completed
-        if (completed === undefined) this.completed = [null];
-        else this.completed = completed;
-
-        // id
-        if (id === undefined) this.id = this.generateId();
-        else this.id = id;
-
+        this.date = date === undefined ? this.getToday() : date;        // title
+        this.member = member;                                           // members
+        this.agenda = agenda === undefined ? [] : agenda;               // agenda
+        this.content = content === undefined ? [] : content;            // content
+        this.conclusion = conclusion === undefined ? [] : conclusion;   // conclusion
+        this.reason = reason === undefined ? [] : reason;               // reason
+        this.memo = memo === undefined ? [] : memo;                     // memo
+        this.completed = completed === undefined ? [] : completed;      // completed
+        this.id = id === undefined ? this.generateId() : id;            // id
     }
 
     /**
@@ -186,8 +159,7 @@ export class NEXT_AGENDA {
     constructor(name: string, date: string, id?: string) {
         this.name = name;
         this.date = date;
-        if (id === undefined) this.id = this.generateId();
-        else this.id = id;
+        this.id = id === undefined ? this.generateId() : id;
     }
 
     /**
@@ -352,10 +324,7 @@ export class SEARCH_DIALOG {
     private change_display = (): void => {
         var calendar: HTMLElement | null = document.getElementById(search_ddl_id['calendarId']);
         var checked: boolean = CF.getCheckboxStatus(search_ddl_id['checkboxId']);    // false means all date
-        if (calendar != null) {
-            if (checked) calendar.style.display = 'block';
-            else calendar.style.display = 'none';
-        } else console.log('get id error');
+        if (calendar != null) calendar.style.display = checked ? 'block' : 'none';
     }
 
     /**
@@ -379,11 +348,7 @@ export class SEARCH_DIALOG {
         }
         var conditions: string = search_text + ';' + date_range[0] + ';' + date_range[1];
         var hidden_tag: HTMLElement | null = document.getElementById(this.res_htmlId);
-        if (hidden_tag == null) {
-            console.log('no hidden tag');
-            return;
-        }
-        else hidden_tag.innerText = conditions;
+        if (hidden_tag != null) hidden_tag.innerText = conditions;
         this.do_reload = true;
         this.dialog.close();
     }

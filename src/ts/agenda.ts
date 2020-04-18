@@ -4,7 +4,6 @@ import DM from './dataManager';
 import { agenda_id } from './id';
 
 const dm: DM = new DM();
-
 var Agenda_List: NEXT_AGENDA[] = [];
 
 /**
@@ -37,11 +36,7 @@ const listup_agenda = (): void => {
  * change display of calendar depending on chekcbox status
  */
 const display_change = (): void => {
-    var calendar: HTMLElement = (document.getElementsByClassName('input-field col s6'))[0] as HTMLElement;
-    var undecided_checked: boolean = CF.getCheckboxStatus(agenda_id['checkbox']);
-
-    if (undecided_checked) calendar.style.display = 'none';
-    else calendar.style.display = 'block';
+    ((document.getElementsByClassName('input-field col s6'))[0] as HTMLElement).style.display = CF.getCheckboxStatus(agenda_id['checkbox']) ? 'none' : 'block';
 }
 
 /**
@@ -58,6 +53,7 @@ function add_table(name?: string, schedule?: string, id?: string): void {
     if (name === undefined || schedule === undefined || id === undefined) {
         // get and reset objects
         agenda_name = CF.getText('title');
+
         if (CF.getCheckboxStatus(agenda_id['checkbox'])) mtg_scheduled_date = 'undecided';
         else {
             mtg_scheduled_date = CF.getCalendarDate('.', 'en');
@@ -110,10 +106,7 @@ const add_del_btn = (id: string): HTMLElement => {
  * add click event to delete button
  */
 const add_del_btn_event = (id: string): void => {
-    // add button event
-    let del_btn: HTMLElement | null = document.getElementById(id);
-    if (del_btn != null) del_btn.addEventListener('click', (e: Event): void => { del_agenda(e); });
-    else console.log('add event error');
+    document.getElementById(id)?.addEventListener('click', (e: Event): void => { del_agenda(e); });
 }
 
 /**

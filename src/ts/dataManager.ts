@@ -4,10 +4,14 @@ import { MINUTES, NEXT_AGENDA } from './class';
 export default class dataManager {
 
     private store: E_STORE = new E_STORE();
+
+    /* key */
     private new_key: string = 'new';
+    private temporal_minutes_key: string = 'temporal';
     private agenda_key: string = 'agenda';
     private minutes_key: string = 'minutes';
     private search_conditions_key: string = 'search_conditions';
+    private free_key: string = 'free';
 
     constructor() {
 
@@ -21,6 +25,10 @@ export default class dataManager {
         if (this.store.has(this.new_key)) {
             console.log('key: ' + this.new_key);
             console.log(this.get_New());
+        }
+        if (this.store.has(this.temporal_minutes_key)) {
+            console.log('key: ' + this.temporal_minutes_key);
+            // console.log(this.get_Agenda());
         }
         if (this.store.has(this.agenda_key)) {
             console.log('key: ' + this.agenda_key);
@@ -39,12 +47,12 @@ export default class dataManager {
     public del_all = (): void => { this.store.clear(); }
 
     /**
-     * set new(=temporal) members data
+     * set newmembers data
      */
-    public set_New = (minutes: MINUTES) => { this.store.set(this.new_key, JSON.stringify(minutes)); }
+    public set_New = (minutes: MINUTES): void => { this.store.set(this.new_key, JSON.stringify(minutes)); }
 
     /**
-     * set new minutes data as typeof MINUTES
+     * get new minutes data as typeof MINUTES
      */
     public get_New = (): MINUTES | null => {
         if (this.store.has(this.new_key)) {
@@ -57,11 +65,32 @@ export default class dataManager {
     }
 
     /**
-     * delete new(=temporal) data
+     * delete new data
      */
-    public del_New = (): void => {
-        if (this.store.has(this.new_key)) this.store.delete(this.new_key);
+    public del_New = (): void => { if (this.store.has(this.new_key)) this.store.delete(this.new_key); }
+
+    /**
+     * set temporal minutes data
+     */
+    public set_Temp = (minutes: MINUTES): void => {
+        this.store.set(this.temporal_minutes_key, JSON.stringify(minutes));
     }
+
+    /**
+     * get temporal minutes data as typeof MINUTES
+     */
+    public get_Temp = (): MINUTES | null => {
+        if (this.store.has(this.temporal_minutes_key)) {
+            var temp: any = JSON.parse(this.store.get(this.temporal_minutes_key));
+            return new MINUTES(temp['member'], temp['date'], temp['id'], temp['agenda'], temp['content'], temp['conclusion'], temp['reason'], temp['memo'], temp['completed']);
+        }
+        else return null;
+    }
+
+    /**
+     * delete temporal data
+     */
+    public del_Temp = (): void => { if (this.store.has(this.temporal_minutes_key)) this.store.delete(this.temporal_minutes_key); }
 
     /**
      * set agenda list
@@ -114,14 +143,26 @@ export default class dataManager {
      * get searched conditions
      * return as string array
      */
-    public get_searched = (): string[] => {
-        if (this.store.has(this.search_conditions_key)) return (JSON.parse(this.store.get(this.search_conditions_key)) as string).split(';');
-        else return [];
-    }
+    public get_searched = (): string[] => { return this.store.has(this.search_conditions_key) ? (JSON.parse(this.store.get(this.search_conditions_key)) as string).split(';') : []; }
 
     /**
      * delete search key
      */
     public del_search = (): void => { if (this.store.has(this.search_conditions_key)) this.store.delete(this.search_conditions_key); }
+
+    /**
+     * set free data
+     */
+    public set_free = (s: string): void => { this.store.set(this.free_key, JSON.stringify(s)); }
+
+    /**
+     * get free data
+     */
+    public get_free = (): string => { return this.store.has(this.free_key) ? JSON.parse(this.store.get(this.free_key)) : '-1'; }
+
+    /**
+     * delete free data
+     */
+    public del_free = (): void => { if (this.store.has(this.free_key)) this.store.delete(this.free_key); }
 
 }
