@@ -5,8 +5,8 @@ import DM from './dataManager';
 /**************************************************************************************/
 import { mydebug as mydebug } from './debug';
 const DEBUG: boolean = true;    // all store data is deleted when application is closed.
-const TEST_MINUTES: boolean = false;
-const TEST_AGENDA: boolean = false;
+const TEST_MINUTES: boolean = true;
+const TEST_AGENDA: boolean = true;
 /**************************************************************************************/
 
 var mainWindow: Electron.BrowserWindow | null = null;

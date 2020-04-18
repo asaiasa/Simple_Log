@@ -47,7 +47,7 @@ export namespace mydebug {
             ['cat', 'dog', 'hamster'],
             ['drive', 'swim'],
             ['coffee', 'milk', 'tea'],
-            ['one piece', 'naruto', 'bleach']
+            ['one piece', 'naruto', 'bleach', 'long']
         ];
         var content: string[][] = [
             ['my name is wonderful cat.', 'super cat.'],
@@ -59,7 +59,7 @@ export namespace mydebug {
             ['none', '', ''],
             ['cover move is perfect skill', 'that is not perfect, i think.'],
             ['none', '', 'travel free'],
-            ['we are ...', '', 'super sample'],
+            ['we are ...', '', 'super sample', 'highper'],
         ];
         var conc: string[][] = [
             ['reject', 'unresolved'],
@@ -71,7 +71,7 @@ export namespace mydebug {
             ['OK', 'OK', 'reject'],
             ['OK', 'unresolved'],
             ['unresolved', 'unresolved', 'unresolved'],
-            ['OK', 'OK', 'OK'],
+            ['OK', 'OK', 'OK', 'NG'],
         ];
         var reason: string[][] = [
             ['none', ''],
@@ -83,7 +83,7 @@ export namespace mydebug {
             ['', '', ''],
             ['', ''],
             ['', '', ''],
-            ['', '', ''],
+            ['', '', '', ''],
         ];
         var comp: (boolean | null)[][] = [
             [true, false],
@@ -95,7 +95,7 @@ export namespace mydebug {
             [null, true, false],
             [null, false],
             [true, true, null],
-            [true, false, false],
+            [true, false, false, null],
         ];
         for (i = 0; i < sample_num; ++i)    sample[i].set_agendas(agenda[i]);
         for (i = 0; i < sample_num; ++i)    sample[i].set_contents(content[i]);
