@@ -30,6 +30,6 @@
   "dependencies": {
     "@types/node": "^12.12.6",
     "electron-store": "^5.1.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   }
 }
